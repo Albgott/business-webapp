@@ -1,12 +1,8 @@
-FROM node as builder
+FROM node:16-alpine 
 WORKDIR /app
+COPY package.json .
+RUN npm i 
 COPY . .
-RUN npm ci
-RUN npm run build
-
-FROM nginx:1.23-alpine as production
 ENV NODE_ENV production
-COPY --from=builder /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 5173
+CMD [ "npm", "run", "dev" ]
