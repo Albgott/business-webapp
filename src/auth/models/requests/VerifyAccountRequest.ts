@@ -1,3 +1,3 @@
 export interface verifyAccountRequest {
-  token: string
+  token: string | null
 }
