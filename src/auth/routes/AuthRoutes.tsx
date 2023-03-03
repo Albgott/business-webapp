@@ -9,7 +9,7 @@ const AuthRoutes = () => {
       <Route path="signup" element={<SignupPage/>}/>
       <Route path="*" element={<Navigate  to={PublicRoutes.LOGIN}/>}/>
       <Route path="/" element={<Navigate  to={PublicRoutes.LOGIN}/>}/>
-      <Route path="verification-email-sended/:token" element={<VerificationEmailSendedPage/>}/>
+      <Route path="verification-email-sended" element={<VerificationEmailSendedPage/>}/>
       <Route path="verify-email" element={<VerifyMailPage/>}/>
     </RoutesWithNotFound>
   )

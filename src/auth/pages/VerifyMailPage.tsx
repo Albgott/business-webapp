@@ -1,13 +1,14 @@
 import { PublicRoutes } from "@/router"
 import { OutlinedButton } from "@/ui/styled-components"
 import { useNavigate, useParams } from "react-router"
+import { useSearchParams } from "react-router-dom"
 import { AuthLayout } from "../layouts/AuthLayout"
 import { verifyAccount } from "../services"
 
 
 const VerifyMailPage = () => {
-  const params = useParams()
-  const token = params.token? params.token : ""
+  const [searchParams] = useSearchParams()
+  const token = searchParams.get("token")? searchParams.get("token") : ""
   const navigate = useNavigate()
 
   const verifyEmail = async () => {
