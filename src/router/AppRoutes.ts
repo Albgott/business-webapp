@@ -1,7 +1,9 @@
-export const AppRoutes = {
-  AUTH: "/auth/*",
-  LOGIN: "/auth/login",
-  SIGNUP: "/auth/signup",
+export enum PublicRoutes {
+  AUTH = "/auth",
+  LOGIN = "/auth/login",
+  SIGNUP = "/auth/signup"
+}
 
-  HOME: "/home/*"
+export enum PrivateRoutes {
+  BACKOFFICE = "/backoffice"
 }

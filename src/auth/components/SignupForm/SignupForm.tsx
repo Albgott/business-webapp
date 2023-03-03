@@ -1,15 +1,21 @@
-import { Form, Input, OutlinedButton } from '@/ui/styled-components';
-import React from 'react';
+import { Form, OutlinedButton } from '@/ui/styled-components';
+import React, { FormEvent } from 'react';
 import { InputWithLabelAndErrors } from '../InputWithLabelAndErrors';
+
 export interface SignupFormProps {}
 
+const handleSubmit = (event: FormEvent) => {
+	event.preventDefault();
+};
+
 const SignupForm : React.FC<SignupFormProps> = () => {
+
+
 	return(
-		<Form>
-			<InputWithLabelAndErrors label='Business name:'  name="businessName"  placeholder='Insert business name'/>
-			<InputWithLabelAndErrors label='Username:'  name="accountName" placeholder='Insert a username'/>
-			<InputWithLabelAndErrors label='Email:' type="email"  name="email" placeholder='Insert an email'/>
-			<InputWithLabelAndErrors label='Password:' type="password"  name="password" placeholder='Insert password'/>
+		<Form onSubmit={handleSubmit}>
+			{/* {
+				fields.map(field => <InputWithLabelAndErrors key={field.name} {...field}/>)
+			} */}
 			<br />
 			<OutlinedButton>Sign up</OutlinedButton>
 		</Form>

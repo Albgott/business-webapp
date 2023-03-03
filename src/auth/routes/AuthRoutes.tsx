@@ -1,13 +1,15 @@
-import { Navigate, Route, Routes } from "react-router"
+import { Navigate, Route} from "react-router"
 import { LoginPage, SignupPage } from "@/auth/pages"
+import { PublicRoutes, RoutesWithNotFound } from "@/router"
 
 const AuthRoutes = () => {
   return(
-    <Routes>
+    <RoutesWithNotFound>
       <Route path="login" element={<LoginPage/>}/>
       <Route path="signup" element={<SignupPage/>}/>
-      <Route path="/*" element={<Navigate  to="/auth/login"/>}/>
-    </Routes>
+      <Route path="*" element={<Navigate  to={PublicRoutes.LOGIN}/>}/>
+      <Route path="/" element={<Navigate  to={PublicRoutes.LOGIN}/>}/>
+    </RoutesWithNotFound>
   )
 }
 

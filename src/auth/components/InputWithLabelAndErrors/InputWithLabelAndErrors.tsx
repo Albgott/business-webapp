@@ -1,5 +1,5 @@
 import { Input } from '@/ui/styled-components';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import ErrorIcon from "@/assets/error-icon.png"
 export interface InputWithLabelAndErrorsProps {
@@ -15,17 +15,21 @@ export interface InputWithLabelAndErrorsProps {
 
 const InputWithLabelAndErrors : React.FC<InputWithLabelAndErrorsProps> = (props) => {
 
-	const hasErrors = props.errors? props.errors.length > 0 : false
+	let hasErrors = props.errors? props.errors.length > 0 : false
+	useEffect(() => {
+		hasErrors = props.errors? props.errors.length > 0 : false
+	}, [props.errors])
+	
 
 	return (
 		<InputWithLabelAndErrorsStyle>
-			<label>{props.label}</label>
+			<label htmlFor={props.name}>{props.label}</label>
 			<Input value={props.value} id={props.name} placeholder={props.placeholder} name={props.name} type={props.type} onBlur={props.onBlur} onChange={props.onChange} error={hasErrors}/>
 			{hasErrors && 
 			<ErrorWrapper >
 				<img width="20" height="20" src={ErrorIcon}/>
 				<Errors>
-					{props.errors?.map(e => <span>{e}</span>)}
+					{props.errors?.map(e => <span key={e}>{e}</span>)}
 				</Errors>
 			</ErrorWrapper>
 			}
@@ -53,6 +57,7 @@ export const InputWithLabelAndErrorsStyle = styled.div`
 const ErrorWrapper = styled.div`
 	color: red;
 	display: flex;
+	align-items: center;
 `
 
 const Errors = styled.div`

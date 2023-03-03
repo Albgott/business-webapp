@@ -6,8 +6,8 @@ import '@/styles/config.css'
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <BrowserRouter>
+  <>
     <CssBaseline />
     <AppRouter />
-  </BrowserRouter>,
+  </>,
 )
