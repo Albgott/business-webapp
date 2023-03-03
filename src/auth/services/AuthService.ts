@@ -17,6 +17,7 @@ export const createBusiness = (request: CreateBusinessRequest): void => {
   POST("/auth/v1/business",request).catch(er => {throw new Error(er)})
 }
 
-export const verifyAccount = (request: verifyAccountRequest): void => {
-  PUT(`/auth/accounts/${request.id}/verify-email`).catch(er => {throw new Error(er)})
+export const verifyAccount = async(request: verifyAccountRequest) => {
+  if(request.token.length == 0) throw new Error()
+  await PUT(`/auth/accounts/${request.token}/verify-email`).catch(er => {throw new Error(er)})
 }
