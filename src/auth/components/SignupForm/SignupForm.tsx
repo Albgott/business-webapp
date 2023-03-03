@@ -1,23 +1,50 @@
+import { CreateBusinessRequest } from '@/auth/models';
 import { Form, OutlinedButton } from '@/ui/styled-components';
-import React, { FormEvent } from 'react';
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { InputWithLabelAndErrors } from '../InputWithLabelAndErrors';
+import {v4 as uuid} from 'uuid';
+import { createBusiness } from '@/auth/services';
+import { useNavigate } from 'react-router';
+import { PublicRoutes } from '@/router';
 
-export interface SignupFormProps {}
+interface IFormInput {
+  businessName: string;
+  accountName: string;
+  email: string;
+  password: string;
+}
 
-const handleSubmit = (event: FormEvent) => {
-	event.preventDefault();
-};
 
-const SignupForm : React.FC<SignupFormProps> = () => {
+const SignupForm : React.FC = () => {
 
+	const { register, handleSubmit } = useForm<IFormInput>()
+	const navigate = useNavigate()
+
+	const onsubmit: SubmitHandler<IFormInput> = async (data) => {
+		console.log(data)
+		const req: CreateBusinessRequest = {
+			...data,
+			businessId: uuid().toString(),
+			accountId: uuid().toString()
+		}
+
+		try{
+			await createBusiness(req)
+			navigate(PublicRoutes.MAIL_SENDED, {replace:true})
+		} catch(err){
+
+		}
+	}
 
 	return(
-		<Form onSubmit={handleSubmit}>
-			{/* {
-				fields.map(field => <InputWithLabelAndErrors key={field.name} {...field}/>)
-			} */}
+		<Form onSubmit={handleSubmit(onsubmit)}>
+			<InputWithLabelAndErrors register={register} required name="businessName" label="Business name:" placeholder='Insert business name'/>
+			<InputWithLabelAndErrors register={register} required name="accountName" label="Username:" placeholder='Insert username'/>
+			<InputWithLabelAndErrors register={register} required name="email" label="Email:" placeholder='Insert email' type="email"/>
+			<InputWithLabelAndErrors register={register} required name="password" label="Password:" placeholder='Insert password' type="password"/>
 			<br />
-			<OutlinedButton>Sign up</OutlinedButton>
+			<OutlinedButton type='submit'>Sign up</OutlinedButton>
 		</Form>
 	);
 };

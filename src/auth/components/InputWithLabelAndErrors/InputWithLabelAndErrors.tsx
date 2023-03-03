@@ -8,9 +8,9 @@ export interface InputWithLabelAndErrorsProps {
 	value?: string
 	type?: string
 	name: string
-	onChange?: any
-  onBlur?: any
 	placeholder: string
+	register: any,
+	required?: boolean
 }
 
 const InputWithLabelAndErrors : React.FC<InputWithLabelAndErrorsProps> = (props) => {
@@ -24,7 +24,7 @@ const InputWithLabelAndErrors : React.FC<InputWithLabelAndErrorsProps> = (props)
 	return (
 		<InputWithLabelAndErrorsStyle>
 			<label htmlFor={props.name}>{props.label}</label>
-			<Input value={props.value} id={props.name} placeholder={props.placeholder} name={props.name} type={props.type} onBlur={props.onBlur} onChange={props.onChange} error={hasErrors}/>
+			<Input value={props.value} id={props.name} placeholder={props.placeholder}  type={props.type} error={hasErrors} {...props.register(props.name,{required:props.required})}/>
 			{hasErrors && 
 			<ErrorWrapper >
 				<img width="20" height="20" src={ErrorIcon}/>
@@ -39,7 +39,8 @@ const InputWithLabelAndErrors : React.FC<InputWithLabelAndErrorsProps> = (props)
 
 InputWithLabelAndErrors.defaultProps = {
 	type: "text",
-	errors: []
+	errors: [],
+	required: false
 } as Partial<InputWithLabelAndErrorsProps>
 
 export const InputWithLabelAndErrorsStyle = styled.div`
