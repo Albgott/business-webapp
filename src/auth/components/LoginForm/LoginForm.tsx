@@ -33,7 +33,7 @@ const LoginForm : React.FC = () => {
 			dispatcher(login(res.user))
 			navigate(PrivateRoutes.BACKOFFICE, {replace:true})
 		} catch(err){
-
+			console.log(err)
 		}
 	}
 

@@ -4,13 +4,14 @@ import { CreateBusinessRequest, LoginRequest, LoginResponse, verifyAccountReques
 
 export const doLogin = async (request: LoginRequest)  => {
   return POST("/auth/business/login",request)
-  .then(res => res.data.json())
-  .then(json => (
-    {
-      token: json.token,
-      user: tokenToUser(json.token)
-    }
-  )).catch(er => {throw new Error(er)})
+  .then(res => {
+    return {
+       token: res.data.token,
+       user: tokenToUser(res.data.token)
+     }
+
+  }
+  ).catch(er => {throw new Error(er)})
 }
 
 export const createBusiness = async (request: CreateBusinessRequest) => {
