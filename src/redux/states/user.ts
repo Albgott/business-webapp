@@ -1,9 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { tokenToUser } from "@/services";
+import { AppUser } from "@/models";
 
-const NO_USER = {
+interface UserStore {
+  isLogged: boolean,
+  principal: AppUser 
+}
+
+const NO_USER : UserStore = {
   isLogged: false,
-  principal: {}
+  principal: {
+    businessId: "",
+    businessName: "",
+    accountId: "",
+    accountName: "",
+    accountRole: "",
+    permissions: [],
+    email: ""
+  } 
 }
 
 const getLocalStorage = (key: string) => {
