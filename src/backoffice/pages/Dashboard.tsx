@@ -1,6 +1,6 @@
 import { BackofficeLayout } from "@/backoffice/layouts";
 
-const HomePage = () => {
+const DashBoard = () => {
   return(
     <BackofficeLayout>
       <h1>THis is the home</h1>
@@ -8,4 +8,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage;
+export default DashBoard;
