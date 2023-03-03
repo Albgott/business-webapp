@@ -16,8 +16,7 @@ export const GET = (url: string, params = {}, token = "") => {
 
 export const POST = (url: string, body = {}, token = "") => {
   const headers = getHeaders(token)
-  return instance.post(url,{
-    data: body,
+  return instance.post(url,body,{
     headers: headers
   })
 }
@@ -25,15 +24,14 @@ export const POST = (url: string, body = {}, token = "") => {
 export const DELETE = (url: string, body = {}, token = "") => {
   const headers = getHeaders(token)
   return instance.delete(url,{
-    data: body,
-    headers: headers
+    headers: headers,
+    data: body
   })
 }
 
 export const PUT = (url: string, body = {}, token = "") => {
   const headers = getHeaders(token)
-  return instance.put(url,{
-    data: body,
+  return instance.put(url,body,{
     headers: headers
   })
 }

@@ -22,11 +22,10 @@ const SignupForm : React.FC = () => {
 	const navigate = useNavigate()
 
 	const onsubmit: SubmitHandler<IFormInput> = async (data) => {
-		console.log(data)
 		const req: CreateBusinessRequest = {
 			...data,
-			businessId: uuid().toString(),
-			accountId: uuid().toString()
+			businessId: uuid(),
+			accountId: uuid()
 		}
 
 		try{
