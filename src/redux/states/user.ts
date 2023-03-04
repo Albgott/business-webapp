@@ -52,7 +52,7 @@ export const userSlice = createSlice({
       }
     },
 
-    logout: (state, action) => NO_USER,
+    logout: () => NO_USER,
   }
 })
 

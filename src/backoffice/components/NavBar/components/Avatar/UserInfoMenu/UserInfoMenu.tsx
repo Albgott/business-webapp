@@ -1,3 +1,4 @@
+import { LogoutButton } from '@/auth/components';
 import { AppUser } from '@/models';
 import { Menu, MenuItem, Typography } from '@mui/material';
 import React from 'react';
@@ -33,6 +34,9 @@ const UserInfoMenu : React.FC<UserInfoMenuProps> = ({user, anchorElement, onClos
 					<Typography textAlign="center">{data}</Typography>
 				</MenuItem>
 			))}
+			<MenuItem key="logout" onClick={onClose} sx={{placeContent: 'center'}}>
+					<LogoutButton />
+			</MenuItem>
 		</Menu>
 	)
 };
