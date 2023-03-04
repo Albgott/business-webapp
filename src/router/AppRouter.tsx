@@ -12,8 +12,11 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <RoutesWithNotFound>
+      <Route element={<AuthGuard inverted/>}>
         <Route path="/" element={<Navigate to={PrivateRoutes.BACKOFFICE}/>} />
         <Route path={`${PublicRoutes.AUTH}/*`} element={<AuthRoutes />}/>
+      </Route>
+
         <Route element={<AuthGuard />}>
           <Route path={`${PrivateRoutes.BACKOFFICE}/*`} element={<BackofficeRoutes />} />
         </Route>

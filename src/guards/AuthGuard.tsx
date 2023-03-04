@@ -1,10 +1,18 @@
 import { RootState } from "@/redux/store"
-import { PublicRoutes } from "@/router"
+import { PrivateRoutes, PublicRoutes } from "@/router"
+import React from "react"
 import { useSelector } from "react-redux"
 import { Navigate, Outlet } from "react-router"
 
-const AuthGuard = () => {
+interface Props {
+  inverted?: boolean
+}
+
+const AuthGuard: React.FC<Props> = ({inverted = false}) => {
   const userState = useSelector((store: RootState) => store.user)
+  if(inverted){
+    return !userState.isLogged? <Outlet /> : <Navigate replace to={PrivateRoutes.BACKOFFICE} />
+  }
   return userState.isLogged? <Outlet /> : <Navigate replace to={PublicRoutes.AUTH} />
 }
 
