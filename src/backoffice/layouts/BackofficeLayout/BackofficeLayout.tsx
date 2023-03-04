@@ -7,6 +7,7 @@ import React, { ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 import MailIcon from '@mui/icons-material/Mail';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
+import { Action } from '@/backoffice/components/Action';
 
 export interface BackofficeLayoutProps {
 	children?: ReactNode,
@@ -23,38 +24,6 @@ const BackofficeLayout : React.FC<BackofficeLayoutProps> = ({children, window}) 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-	const drawer = (
-    <div>
-      <Toolbar />
-      <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
 
 	const container = window !== undefined ? () => window().document.body : undefined;
 
@@ -81,7 +50,7 @@ const BackofficeLayout : React.FC<BackofficeLayoutProps> = ({children, window}) 
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth,background: 'var(--primary-color)'},
           }}
         >
-          {drawer}
+          <AppDrawer />
         </Drawer>
         <Drawer
           variant="permanent"
@@ -91,7 +60,7 @@ const BackofficeLayout : React.FC<BackofficeLayoutProps> = ({children, window}) 
           }}
           open
         >
-          {drawer}
+          <AppDrawer />
         </Drawer>
       </Box>
       <Box
@@ -100,54 +69,6 @@ const BackofficeLayout : React.FC<BackofficeLayoutProps> = ({children, window}) 
       >
         <Toolbar />
 				{children}
-				<h2></h2>
-				<p>
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro provident dolore eius blanditiis. Unde error ullam harum, aliquam animi sed modi, id facilis fuga deleniti aut magni officiis excepturi provident.
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia eaque a odit error dolor! Iusto, voluptatibus pariatur, laudantium quaerat, nemo enim et magni debitis esse neque nihil minima dolor reprehenderit?
-				</p>
       </Box>
     </Box>
 		</>

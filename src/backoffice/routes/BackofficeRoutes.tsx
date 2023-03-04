@@ -1,13 +1,16 @@
 import {  Route } from "react-router"
-import { Dashboard } from "@/backoffice/pages"
-import { RoutesWithNotFound } from "@/router"
+import { AddCategoryPage, AddProductPage, Dashboard, ListProductsPage, UserDetailsPage } from "@/backoffice/pages"
+import { PrivateRoutes, RoutesWithNotFound } from "@/router"
 
 
 const BackofficeRoutes = () => {
   return(
     <RoutesWithNotFound>
       <Route path="/*" element={<Dashboard />}>
-        <Route path="lala" element={<h1>lala</h1>}></Route>
+        <Route path={PrivateRoutes.ADD_CATEGORY} element={<AddCategoryPage />}></Route>
+        <Route path={PrivateRoutes.ADD_PRODUCT} element={<AddProductPage />}></Route>
+        <Route path={PrivateRoutes.LIST_PRODUCTS}element={<ListProductsPage />}></Route>
+        <Route path={PrivateRoutes.SHOW_USER} element={<UserDetailsPage />}></Route>
       </Route>
     </RoutesWithNotFound>
   )
