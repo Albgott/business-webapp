@@ -18,7 +18,7 @@ const NavBar : React.FC<Props> = ({user, toggleDrawer}) => {
         zIndex: 1201
       }}
     >
-      <Container maxWidth='xl' >
+      <Container maxWidth={false} >
         <Toolbar disableGutters sx={{placeContent: 'space-between'}}>
           <IconButton
             color="inherit"
