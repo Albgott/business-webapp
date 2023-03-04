@@ -42,6 +42,7 @@ const BackofficeLayout : React.FC<BackofficeLayoutProps> = ({children, window}) 
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
+          onClick={handleDrawerToggle}
           ModalProps={{
             keepMounted: true, 
           }}
