@@ -11,7 +11,7 @@ interface Props {
 const AuthGuard: React.FC<Props> = ({inverted = false}) => {
   const userState = useSelector((store: RootState) => store.user)
   if(inverted){
-    return !userState.isLogged? <Outlet /> : <Navigate replace to={PrivateRoutes.BACKOFFICE} />
+    return !userState.isLogged? <Outlet /> : <Navigate replace to={PrivateRoutes.PRODUCTS} />
   }
   return userState.isLogged? <Outlet /> : <Navigate replace to={PublicRoutes.AUTH} />
 }

@@ -7,9 +7,5 @@ export enum PublicRoutes {
 }
 
 export enum PrivateRoutes {
-  BACKOFFICE = "/backoffice",
-  ADD_PRODUCT = "add-product",
-  LIST_PRODUCTS = "list-products",
-  ADD_CATEGORY = "add-categories",
-  SHOW_USER = "user-details"
+  PRODUCTS = "/products"
 }
