@@ -3,6 +3,7 @@ import { Button, Container, Toolbar, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/AddCircle';
 import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid';
 import { PageTitle } from '@/ui/components';
+import { useNavigate } from 'react-router';
 
 
 export interface ProductHomeProps {}
@@ -74,6 +75,7 @@ const columns: GridColDef[] = [
 
 
 const ProductHome : React.FC<ProductHomeProps> = () => {
+	const navigate = useNavigate()
 	return (
 		<Container>
 			<Toolbar sx={{
@@ -82,8 +84,7 @@ const ProductHome : React.FC<ProductHomeProps> = () => {
 				}}
 			>
 				<PageTitle>Products</PageTitle>
-				<Button 
-				  
+				<Button onClick={() => navigate("new-product")}
 					variant='contained' 
 					sx={{
 						backgroundColor:'var(--primary-color)',
