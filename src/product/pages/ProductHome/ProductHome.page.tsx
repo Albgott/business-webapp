@@ -1,106 +1,47 @@
-import React from 'react';
-import { Button, Container, Toolbar, Typography } from '@mui/material';
-import AddIcon from '@mui/icons-material/AddCircle';
+import React, { useEffect } from 'react';
+import {Container, Toolbar} from '@mui/material';
 import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid';
 import { PageTitle } from '@/ui/components';
-import { useNavigate } from 'react-router';
+import { useBusinessProducts } from '@/product/hooks';
+import { GoNewProductButton } from './GoNewProductButton';
+import { NoProductHolder } from '../NoProductHolder';
 
 
 export interface ProductHomeProps {}
 
-const rows: GridRowsProp = [
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-	{ id: 1, code: 'Hello', name: 'World' , description: "This is a description"},
-]
 const columns: GridColDef[] = [
-	{ field: 'id', headerName: 'ID', width:5},
-	{ field: 'code', headerName: 'Code', minWidth:150 ,flex:1},
-  { field: 'name', headerName: 'Name',minWidth:150,flex:1},
-  { field: 'description', headerName: 'Description', minWidth:300,flex:3},
+	{field: 'name', headerName:'Name', minWidth:150, flex:1},
+	{field: 'code', headerName:'Code', minWidth:150, flex:1},
+	{field: 'description', headerName:'Description', minWidth:300, flex:3}
 ]
 
+const pageSize = 15;
 
 const ProductHome : React.FC<ProductHomeProps> = () => {
-	const navigate = useNavigate()
+
+	const { products, hasProducts } = useBusinessProducts()
+	
 	return (
 		<Container>
-			<Toolbar sx={{
-					placeContent:'space-between',
-					fontSize:'1.3rem'
-				}}
-			>
+			<Toolbar sx={{placeContent:'space-between',fontSize:'1.3rem'}}>
 				<PageTitle>Products</PageTitle>
-				<Button onClick={() => navigate("new-product")}
-					variant='contained' 
-					sx={{
-						backgroundColor:'var(--primary-color)',
-						':hover':{
-							backgroundColor:'var(--secondary-color)',
-
-						},
-						fontSize:{xs:'0.7rem', md:'1rem'}
-					}}
-					startIcon={<AddIcon/>}
-				>
-					new product
-				</Button>
+				{hasProducts && <GoNewProductButton />}
 			</Toolbar>
-		
-      <DataGrid rows={rows} columns={columns} pageSize={15} autoHeight={true}/>
+
+		{
+			hasProducts?
+				<DataGrid
+					disableColumnSelector
+					disableSelectionOnClick
+					autoHeight
+					pageSize={pageSize}
+					rowsPerPageOptions={[pageSize]}
+					rows={products}
+					columns={columns}
+				/>
+				:
+				<NoProductHolder />
+			}
 		</Container>
     
 	);

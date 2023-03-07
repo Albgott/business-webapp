@@ -6,7 +6,7 @@ export interface Product {
   description?: string
   code?: string
   images_ids?: string[]
-  categories: Partial<Category>[]
+  categories?: Partial<Category>[]
 }
 
 export default Product
