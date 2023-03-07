@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Button, Container, Toolbar, Typography } from '@mui/material';
+import { Button, Container, Toolbar, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/AddCircle';
 import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid';
+import { PageTitle } from '@/ui/components';
 
 
 export interface ProductHomeProps {}
@@ -80,14 +81,7 @@ const ProductHome : React.FC<ProductHomeProps> = () => {
 					fontSize:'1.3rem'
 				}}
 			>
-				<Typography
-					fontWeight='bold'
-					sx={{
-						fontSize: {xs:'2rem', md:'3rem'}
-					}}
-				>
-					Products
-				</Typography>
+				<PageTitle>Products</PageTitle>
 				<Button 
 				  
 					variant='contained' 

@@ -1,44 +1,23 @@
-import { ApiRoutes } from "@/models/ApiRoutes"
-import axios from "axios"
+import client from "./AxiosApiCLient"
 
-const instance = axios.create({
-  baseURL: ApiRoutes.BASE,
-  
-})
+const instance = client
 
-export const GET = (url: string, params = {}, token = "") => {
-  const headers = getHeaders(token)
+export const GET = (url: string, params = {}) => {
   return instance.get(url,{
     params: params,
-    headers: headers
   })
 }
 
-export const POST = (url: string, body = {}, token = "") => {
-  const headers = getHeaders(token)
-  return instance.post(url,body,{
-    headers: headers
-  })
+export const POST = (url: string, body = {}) => {
+  return instance.post(url,body)
 }
 
-export const DELETE = (url: string, body = {}, token = "") => {
-  const headers = getHeaders(token)
+export const DELETE = (url: string, body = {}) => {
   return instance.delete(url,{
-    headers: headers,
     data: body
   })
 }
 
-export const PUT = (url: string, body = {}, token = "") => {
-  const headers = getHeaders(token)
-  return instance.put(url,body,{
-    headers: headers
-  })
-}
-
-const getHeaders = (token: string) => {
-  if(!!token){
-    return {}
-  }
-  return {'Authorization': token}
+export const PUT = (url: string, body = {}) => {
+  return instance.put(url,body)
 }

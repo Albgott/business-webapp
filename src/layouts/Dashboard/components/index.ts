@@ -1,3 +1,4 @@
+export * from './DrawerMenu';
 export * from './DrawerNavbar';
 export * from './Link';
 export * from './Navbar/components/AppAvatar';

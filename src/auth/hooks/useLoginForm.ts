@@ -65,7 +65,7 @@ const useLoginForm = () => {
 			const res = await doLogin(req)
 			localStorage.setItem("token", res.token)
 			dispatcher(login(res.user))
-			navigate(PrivateRoutes.BACKOFFICE, {replace:true})
+			navigate(PrivateRoutes.PRODUCTS, {replace:true})
 		} catch(err){
 			console.log(err)
 		}
