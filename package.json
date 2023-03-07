@@ -28,6 +28,7 @@
     "react-carousel-minimal": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.3",
+    "react-mui-fileuploader": "^0.5.2",
     "react-redux": "^8.0.5",
     "react-router": "^6.8.1",
     "react-router-dom": "^6.8.1",
