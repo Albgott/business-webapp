@@ -5,6 +5,7 @@ import { PageTitle } from '@/ui/components';
 import { useBusinessProducts } from '@/product/hooks';
 import { GoNewProductButton } from './GoNewProductButton';
 import { NoProductHolder } from '../NoProductHolder';
+import { Loading } from '@/components/Loading';
 
 
 export interface ProductHomeProps {}
@@ -19,15 +20,14 @@ const pageSize = 15;
 
 const ProductHome : React.FC<ProductHomeProps> = () => {
 
-	const { products, hasProducts } = useBusinessProducts()
+	const { products, hasProducts, loading } = useBusinessProducts()
 	
 	return (
-		<Container>
+		<Container >
 			<Toolbar sx={{placeContent:'space-between',fontSize:'1.3rem'}}>
 				<PageTitle>Products</PageTitle>
-				{hasProducts && <GoNewProductButton />}
+				{ !loading && <GoNewProductButton />}
 			</Toolbar>
-
 		{
 			hasProducts?
 				<DataGrid
@@ -39,9 +39,9 @@ const ProductHome : React.FC<ProductHomeProps> = () => {
 					rows={products}
 					columns={columns}
 				/>
-				:
-				<NoProductHolder />
+				: (!loading && <NoProductHolder />)
 			}
+			{ loading && <Loading /> }
 		</Container>
     
 	);
